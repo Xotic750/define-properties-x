@@ -90,6 +90,7 @@
   })();
 
   /**
+   * Method `defineProperty`.
    *
    * @private
    * @param {Object} object The object on which to define the property.
@@ -114,11 +115,12 @@
   }
 
   /**
+   * Method `defineProperties`.
    *
    * @private
    * @param {Object} object The object on which to define the property.
-   * @param {Object} map The property name.
-   * @param {Object} [predicates] The property name.
+   * @param {Object} map The object of properties.
+   * @param {Object} [predicates] The object of property predicates.
    */
   function defineProperties(object, map, predicates) {
     var preds = isUndefined(predicates) ? {} : predicates;
@@ -166,7 +168,7 @@
      * @function
      * @param {Object} object The object on which to define the property.
      * @param {Object} map The object of properties.
-     * @param {Object} [predicates] The object of property prdicates.
+     * @param {Object} [predicates] The object of property predicates.
      * @example
      * var lib = require('define-properties-x');
      * lib.defineProperties({

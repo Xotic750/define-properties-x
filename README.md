@@ -100,7 +100,7 @@ force-overrides.
 | --- | --- | --- |
 | object | <code>Object</code> | The object on which to define the property. |
 | map | <code>Object</code> | The object of properties. |
-| [predicates] | <code>Object</code> | The object of property prdicates. |
+| [predicates] | <code>Object</code> | The object of property predicates. |
 
 **Example**  
 ```js
