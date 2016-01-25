@@ -90,7 +90,7 @@
   })();
 
   /**
-   * Method `defineProperty`.
+   * Method `property`.
    *
    * @private
    * @param {Object} object The object on which to define the property.
@@ -115,7 +115,7 @@
   }
 
   /**
-   * Method `defineProperties`.
+   * Method `properties`.
    *
    * @private
    * @param {Object} object The object on which to define the property.
@@ -141,10 +141,10 @@
 
   properties(module.exports, {
     /**
-     * Just like `defineProperties` but for defining a single non-enumerable
+     * Just like `properties` but for defining a single non-enumerable
      * property. Useful in environments that do not
      * support `Computed property names`. This can be done
-     * with `defineProperties`, but this method can read a little cleaner.
+     * with `properties`, but this method can read a little cleaner.
      *
      * @function
      * @param {Object} object The object on which to define the property.

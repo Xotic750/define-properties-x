@@ -65,10 +65,10 @@ define.supportsDescriptors; // true or false
 ```
 <a name="module_define-properties-x..property"></a>
 ### `define-properties-x~property(object, prop, value, [force])`
-Just like `defineProperties` but for defining a single non-enumerable
+Just like `properties` but for defining a single non-enumerable
 property. Useful in environments that do not
 support `Computed property names`. This can be done
-with `defineProperties`, but this method can read a little cleaner.
+with `properties`, but this method can read a little cleaner.
 
 **Kind**: inner method of <code>[define-properties-x](#module_define-properties-x)</code>  
 
