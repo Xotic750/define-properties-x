@@ -42,7 +42,7 @@
  * `es6.shim.js` provides compatibility shims so that legacy JavaScript engines
  * behave as closely as possible to ECMAScript 6 (Harmony).
  *
- * @version 1.0.2
+ * @version 1.1.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -94,23 +94,23 @@
    *
    * @private
    * @param {Object} object The object on which to define the property.
-   * @param {string|Symbol} property The property name.
+   * @param {string|Symbol} prop The property name.
    * @param {*} value The value of the property.
    * @param {boolean} [force=false] If `true` then set property regardless.
    */
-  function defineProperty(object, property, value, force) {
-    if (property in object && !force) {
+  function property(object, prop, value, force) {
+    if (prop in object && !force) {
       return;
     }
     if (supportsDescriptors) {
-      $defineProperty(object, property, {
+      $defineProperty(object, prop, {
         configurable: true,
         enumerable: false,
         value: value,
         writable: true
       });
     } else {
-      object[property] = value;
+      object[prop] = value;
     }
   }
 
@@ -122,7 +122,7 @@
    * @param {Object} map The object of properties.
    * @param {Object} [predicates] The object of property predicates.
    */
-  function defineProperties(object, map, predicates) {
+  function properties(object, map, predicates) {
     var preds = isUndefined(predicates) ? {} : predicates;
     var props = $keys(map);
     if (hasSymbols && $getOwnPropertySymbols) {
@@ -130,7 +130,7 @@
     }
     pForEach.call(props, function (name) {
       var predicate = preds[name];
-      defineProperty(
+      property(
         object,
         name,
         map[name],
@@ -139,7 +139,7 @@
     });
   }
 
-  defineProperties(module.exports, {
+  properties(module.exports, {
     /**
      * Just like `defineProperties` but for defining a single non-enumerable
      * property. Useful in environments that do not
@@ -148,16 +148,16 @@
      *
      * @function
      * @param {Object} object The object on which to define the property.
-     * @param {string|Symbol} property The property name.
+     * @param {string|Symbol} prop The property name.
      * @param {*} value The value of the property.
      * @param {boolean} [force=false] If `true` then set property regardless.
      * @example
-     * var lib = require('define-properties-x');
+     * var define = require('define-properties-x');
      * var myString = 'something';
-     * lib.defineProperty(obj, Symbol.iterator, function () {}, true);
-     * lib.defineProperty(obj, myString, function () {}, true);
+     * define.property(obj, Symbol.iterator, function () {}, true);
+     * define.property(obj, myString, function () {}, true);
      */
-    defineProperty: defineProperty,
+    property: property,
     /**
      * Define multiple non-enumerable properties at once.
      * Uses `Object.defineProperty` when available; falls back to standard
@@ -170,8 +170,8 @@
      * @param {Object} map The object of properties.
      * @param {Object} [predicates] The object of property predicates.
      * @example
-     * var lib = require('define-properties-x');
-     * lib.defineProperties({
+     * var define = require('define-properties-x');
+     * define.properties({
      *   a: 1,
      *   b: 2
      * }, {
@@ -179,15 +179,15 @@
      *   b: function () { return true; }
      * });
      */
-    defineProperties: defineProperties,
+    properties: properties,
     /**
      * Boolean indicator as to whether the environments supports descriptors
      * or not.
      *
      * @type boolean
      * @example
-     * var lib = require('define-properties-x');
-     * lib.supportsDescriptors; // true or false
+     * var define = require('define-properties-x');
+     * define.supportsDescriptors; // true or false
      */
     supportsDescriptors: supportsDescriptors
   });

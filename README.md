@@ -42,15 +42,15 @@ es5-shim.js to be able to work properly.
 `es6.shim.js` provides compatibility shims so that legacy JavaScript engines
 behave as closely as possible to ECMAScript 6 (Harmony).
 
-**Version**: 1.0.2  
+**Version**: 1.1.0  
 **Author:** Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  
 
 * [define-properties-x](#module_define-properties-x)
     * [`~supportsDescriptors`](#module_define-properties-x..supportsDescriptors) : <code>boolean</code>
-    * [`~defineProperty(object, property, value, [force])`](#module_define-properties-x..defineProperty)
-    * [`~defineProperties(object, map, [predicates])`](#module_define-properties-x..defineProperties)
+    * [`~property(object, prop, value, [force])`](#module_define-properties-x..property)
+    * [`~properties(object, map, [predicates])`](#module_define-properties-x..properties)
 
 <a name="module_define-properties-x..supportsDescriptors"></a>
 ### `define-properties-x~supportsDescriptors` : <code>boolean</code>
@@ -60,11 +60,11 @@ or not.
 **Kind**: inner property of <code>[define-properties-x](#module_define-properties-x)</code>  
 **Example**  
 ```js
-var lib = require('define-properties-x');
-lib.supportsDescriptors; // true or false
+var define = require('define-properties-x');
+define.supportsDescriptors; // true or false
 ```
-<a name="module_define-properties-x..defineProperty"></a>
-### `define-properties-x~defineProperty(object, property, value, [force])`
+<a name="module_define-properties-x..property"></a>
+### `define-properties-x~property(object, prop, value, [force])`
 Just like `defineProperties` but for defining a single non-enumerable
 property. Useful in environments that do not
 support `Computed property names`. This can be done
@@ -75,19 +75,19 @@ with `defineProperties`, but this method can read a little cleaner.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | object | <code>Object</code> |  | The object on which to define the property. |
-| property | <code>string</code> &#124; <code>Symbol</code> |  | The property name. |
+| prop | <code>string</code> &#124; <code>Symbol</code> |  | The property name. |
 | value | <code>\*</code> |  | The value of the property. |
 | [force] | <code>boolean</code> | <code>false</code> | If `true` then set property regardless. |
 
 **Example**  
 ```js
-var lib = require('define-properties-x');
+var define = require('define-properties-x');
 var myString = 'something';
-lib.defineProperty(obj, Symbol.iterator, function () {}, true);
-lib.defineProperty(obj, myString, function () {}, true);
+define.property(obj, Symbol.iterator, function () {}, true);
+define.property(obj, myString, function () {}, true);
 ```
-<a name="module_define-properties-x..defineProperties"></a>
-### `define-properties-x~defineProperties(object, map, [predicates])`
+<a name="module_define-properties-x..properties"></a>
+### `define-properties-x~properties(object, map, [predicates])`
 Define multiple non-enumerable properties at once.
 Uses `Object.defineProperty` when available; falls back to standard
 assignment in older engines. Existing properties are not overridden.
@@ -104,8 +104,8 @@ force-overrides.
 
 **Example**  
 ```js
-var lib = require('define-properties-x');
-lib.defineProperties({
+var define = require('define-properties-x');
+define.properties({
   a: 1,
   b: 2
 }, {

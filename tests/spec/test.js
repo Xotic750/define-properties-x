@@ -71,8 +71,8 @@
           ['a', 'b', 'c'],
           'all literal-set Object.keys start enumerable'
         );
-        lib.defineProperty(obj, 'c', 4);
-        lib.defineProperty(obj, 'd', 5);
+        lib.property(obj, 'c', 4);
+        lib.property(obj, 'd', 5);
         expect(obj).toEqual({
           a: 1,
           b: 2,
@@ -87,9 +87,9 @@
           'new Object.keys are not enumerable'
         );
 
-        lib.defineProperty(obj, 'a', 2, true);
-        lib.defineProperty(obj, 'b', 3, false);
-        lib.defineProperty(obj, 'c', 4);
+        lib.property(obj, 'a', 2, true);
+        lib.property(obj, 'b', 3, false);
+        lib.property(obj, 'c', 4);
         expect(obj).toEqual({
           b: 2,
           c: 3
@@ -114,9 +114,9 @@
           b: 2,
           c: 3
         };
-        lib.defineProperty(obj, 'b', 3);
-        lib.defineProperty(obj, 'c', 4);
-        lib.defineProperty(obj, 'd', 5);
+        lib.property(obj, 'b', 3);
+        lib.property(obj, 'c', 4);
+        lib.property(obj, 'd', 5);
         expect(obj).toEqual({
           a: 1,
           b: 2,
@@ -124,9 +124,9 @@
           d: 5
         }, 'existing properties were not overridden, new properties added');
 
-        lib.defineProperty(obj, 'a', 2, true);
-        lib.defineProperty(obj, 'b', 3, false);
-        lib.defineProperty(obj, 'c', 4);
+        lib.property(obj, 'a', 2, true);
+        lib.property(obj, 'b', 3, false);
+        lib.property(obj, 'c', 4);
         expect(obj).toEqual({
           a: 2,
           b: 2,
@@ -141,8 +141,8 @@
           aValue = {},
           bValue = {};
 
-        lib.defineProperty(obj, 'a', aValue);
-        lib.defineProperty(obj, sym, bValue);
+        lib.property(obj, 'a', aValue);
+        lib.property(obj, sym, bValue);
 
         expect(Object.keys(obj)).toEqual(
           [],
@@ -181,7 +181,7 @@
           ['a', 'b', 'c'],
           'all literal-set keys start enumerable'
         );
-        lib.defineProperties(obj, {
+        lib.properties(obj, {
           b: 3,
           c: 4,
           d: 5
@@ -200,7 +200,7 @@
           'new keys are not enumerable'
         );
 
-        lib.defineProperties(obj, {
+        lib.properties(obj, {
           a: 2,
           b: 3,
           c: 4
@@ -236,7 +236,7 @@
           b: 2,
           c: 3
         };
-        lib.defineProperties(obj, {
+        lib.properties(obj, {
           b: 3,
           c: 4,
           d: 5
@@ -250,7 +250,7 @@
           'existing properties were not overridden, new properties were added'
         );
 
-        lib.defineProperties(obj, {
+        lib.properties(obj, {
           a: 2,
           b: 3,
           c: 4
@@ -280,7 +280,7 @@
         };
         properties[sym] = bValue;
 
-        lib.defineProperties(obj, properties);
+        lib.properties(obj, properties);
 
         expect(Object.keys(obj)).toEqual([], 'object has no enumerable keys');
         expect(Object.getOwnPropertyNames(obj)).toEqual(
