@@ -42,24 +42,28 @@
  * `es6.shim.js` provides compatibility shims so that legacy JavaScript engines
  * behave as closely as possible to ECMAScript 6 (Harmony).
  *
- * @version 1.1.4
+ * @version 1.2.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
  * @module define-properties-x
  */
 
-/*jslint maxlen:80, es6:false, white:true */
+/* jslint maxlen:80, es6:true, white:true */
 
-/*jshint bitwise:true, camelcase:true, curly:true, eqeqeq:true, forin:true,
-  freeze:true, futurehostile:true, latedef:true, newcap:true, nocomma:true,
-  nonbsp:true, singleGroups:true, strict:true, undef:true, unused:true,
-  es3:true, esnext:false, plusplus:true, maxparams:4, maxdepth:2,
-  maxstatements:12, maxcomplexity:3 */
+/* jshint bitwise:true, camelcase:true, curly:true, eqeqeq:true, forin:true,
+   freeze:true, futurehostile:true, latedef:true, newcap:true, nocomma:true,
+   nonbsp:true, singleGroups:true, strict:true, undef:true, unused:true,
+   es3:false, esnext:true, plusplus:true, maxparams:1, maxdepth:1,
+   maxstatements:3, maxcomplexity:2 */
 
-/*global module */
+/* eslint strict: 1, max-statements: 1, id-length: 1, no-restricted-syntax: 1,
+   no-param-reassign: 1 */
 
-;(function () {
+/* global module */
+
+;(function () { // eslint-disable-line no-extra-semi
+
   'use strict';
 
   var hasSymbols = require('has-symbol-support-x');
@@ -68,26 +72,24 @@
   var pConcat = Array.prototype.concat;
   var pForEach = Array.prototype.forEach;
   var $keys = Object.keys;
-  var $getOwnPropertySymbols = isFunction(Object.getOwnPropertySymbols) &&
-    Object.getOwnPropertySymbols;
-  var $defineProperty = isFunction(Object.defineProperty) &&
-    Object.defineProperty;
-  var supportsDescriptors = Boolean($defineProperty) && (function (unused) {
+  var $getOwnPropertySymbols = isFunction(Object.getOwnPropertySymbols) && Object.getOwnPropertySymbols;
+  var $defineProperty = isFunction(Object.defineProperty) && Object.defineProperty;
+  var supportsDescriptors = Boolean($defineProperty) && (function () {
     var obj = {};
     try {
       $defineProperty(obj, 'x', {
         enumerable: false,
         value: obj
       });
-      for (unused in obj) {
-        /*jshint forin:false */
+      for (var unused in obj) {
+        /* jshint forin:false */
         return false;
       }
       return obj.x === obj;
     } catch (e) { /* this is IE 8. */
       return false;
     }
-  })();
+  }());
 
   /**
    * Method `property`.
@@ -98,7 +100,7 @@
    * @param {*} value The value of the property.
    * @param {boolean} [force=false] If `true` then set property regardless.
    */
-  function property(object, prop, value, force) {
+  var property = function (object, prop, value, force) {
     if (prop in object && !force) {
       return;
     }
@@ -112,7 +114,7 @@
     } else {
       object[prop] = value;
     }
-  }
+  };
 
   /**
    * Method `properties`.
@@ -122,7 +124,7 @@
    * @param {Object} map The object of properties.
    * @param {Object} [predicates] The object of property predicates.
    */
-  function properties(object, map, predicates) {
+  var properties = function (object, map, predicates) {
     var preds = isUndefined(predicates) ? {} : predicates;
     var props = $keys(map);
     if (hasSymbols && $getOwnPropertySymbols) {
@@ -137,27 +139,9 @@
         isFunction(predicate) && predicate()
       );
     });
-  }
+  };
 
   properties(module.exports, {
-    /**
-     * Just like `properties` but for defining a single non-enumerable
-     * property. Useful in environments that do not
-     * support `Computed property names`. This can be done
-     * with `properties`, but this method can read a little cleaner.
-     *
-     * @function
-     * @param {Object} object The object on which to define the property.
-     * @param {string|Symbol} prop The property name.
-     * @param {*} value The value of the property.
-     * @param {boolean} [force=false] If `true` then set property regardless.
-     * @example
-     * var define = require('define-properties-x');
-     * var myString = 'something';
-     * define.property(obj, Symbol.iterator, function () {}, true);
-     * define.property(obj, myString, function () {}, true);
-     */
-    property: property,
     /**
      * Define multiple non-enumerable properties at once.
      * Uses `Object.defineProperty` when available; falls back to standard
@@ -180,6 +164,24 @@
      * });
      */
     properties: properties,
+    /**
+     * Just like `properties` but for defining a single non-enumerable
+     * property. Useful in environments that do not
+     * support `Computed property names`. This can be done
+     * with `properties`, but this method can read a little cleaner.
+     *
+     * @function
+     * @param {Object} object The object on which to define the property.
+     * @param {string|Symbol} prop The property name.
+     * @param {*} value The value of the property.
+     * @param {boolean} [force=false] If `true` then set property regardless.
+     * @example
+     * var define = require('define-properties-x');
+     * var myString = 'something';
+     * define.property(obj, Symbol.iterator, function () {}, true);
+     * define.property(obj, myString, function () {}, true);
+     */
+    property: property,
     /**
      * Boolean indicator as to whether the environments supports descriptors
      * or not.

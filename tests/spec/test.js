@@ -1,14 +1,18 @@
-/*jslint maxlen:80, es6:true, white:true */
+/* jslint maxlen:80, es6:true, white:true */
 
-/*jshint bitwise:true, camelcase:true, curly:true, eqeqeq:true, forin:true,
-  freeze:true, futurehostile:true, latedef:true, newcap:true, nocomma:true,
-  nonbsp:true, singleGroups:true, strict:true, undef:true, unused:true,
-  es3:false, esnext:true, plusplus:true, maxparams:1, maxdepth:2,
-  maxstatements:15, maxcomplexity:6 */
+/* jshint bitwise:true, camelcase:true, curly:true, eqeqeq:true, forin:true,
+   freeze:true, futurehostile:true, latedef:true, newcap:true, nocomma:true,
+   nonbsp:true, singleGroups:true, strict:true, undef:true, unused:true,
+   es3:false, esnext:true, plusplus:true, maxparams:1, maxdepth:2,
+   maxstatements:12, maxcomplexity:4 */
 
-/*global JSON:true, expect, module, require, describe, it, xit, returnExports */
+/* eslint strict: 1, max-lines: 1, symbol-description: 1, max-nested-callbacks: 1,
+   max-statements: 1, id-length: 1 */
 
-(function () {
+/* global JSON:true, expect, module, require, describe, xit, it, returnExports */
+
+;(function () { // eslint-disable-line no-extra-semi
+
   'use strict';
 
   var lib;
@@ -20,27 +24,28 @@
     }
     require('json3').runInContext(null, JSON);
     require('es6-shim');
+    var es7 = require('es7-shim');
+    Object.keys(es7).forEach(function (key) {
+      var obj = es7[key];
+      if (typeof obj.shim === 'function') {
+        obj.shim();
+      }
+    });
     lib = require('../../index.js');
   } else {
     lib = returnExports;
   }
 
   var arePropertyDescriptorsSupported = function () {
-      var obj = {
-        a: 1
-      };
+      var obj = { a: 1 };
       try {
-        Object.defineProperty(obj, 'x', {
-          value: obj
-        });
+        Object.defineProperty(obj, 'x', { value: obj });
         return obj.x === obj;
       } catch (ignore) {} /* this is IE 8. */
       return false;
     },
-    descriptorsSupported = Boolean(Object.defineProperty) &&
-      arePropertyDescriptorsSupported(),
-    hasSymbols = typeof Symbol === 'function' &&
-      typeof Symbol() === 'symbol',
+    descriptorsSupported = Boolean(Object.defineProperty) && arePropertyDescriptorsSupported(),
+    hasSymbols = typeof Symbol === 'function' && typeof Symbol() === 'symbol',
     ifHasSymbolsIt = hasSymbols ? it : xit,
     ifDescriptorsSupportedIt = descriptorsSupported ? it : xit,
     ifNotDescriptorsSupportedIt = descriptorsSupported ? xit : it;
@@ -242,11 +247,11 @@
           d: 5
         });
         expect(obj).toEqual({
-            a: 1,
-            b: 2,
-            c: 3,
-            d: 5
-          },
+          a: 1,
+          b: 2,
+          c: 3,
+          d: 5
+        },
           'existing properties were not overridden, new properties were added'
         );
 
@@ -275,9 +280,7 @@
         var obj = {};
         var aValue = {};
         var bValue = {};
-        var properties = {
-          a: aValue
-        };
+        var properties = { a: aValue };
         properties[sym] = bValue;
 
         lib.properties(obj, properties);
