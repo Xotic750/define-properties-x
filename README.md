@@ -23,28 +23,13 @@ alt="devDependency status" height="18"/>
 alt="npm version" height="18">
 </a>
 
-Based on the original work by Jordan Harband
-[`define-properties`](https://www.npmjs.com/package/define-properties).
+Define multiple non-enumerable properties at once.
 
-<h2>ECMAScript compatibility shims for legacy JavaScript engines</h2>
-`es5-shim.js` monkey-patches a JavaScript context to contain all EcmaScript 5
-methods that can be faithfully emulated with a legacy JavaScript engine.
+Requires ES3 or above.
 
-`es5-sham.js` monkey-patches other ES5 methods as closely as possible.
-For these methods, as closely as possible to ES5 is not very close.
-Many of these shams are intended only to allow code to be written to ES5
-without causing run-time errors in older engines. In many cases,
-this means that these shams cause many ES5 methods to silently fail.
-Decide carefully whether this is what you want. Note: es5-sham.js requires
-es5-shim.js to be able to work properly.
-
-`json3.js` monkey-patches the EcmaScript 5 JSON implimentation faithfully.
-
-`es6.shim.js` provides compatibility shims so that legacy JavaScript engines
-behave as closely as possible to ECMAScript 6 (Harmony).
-
-**Version**: 1.2.0  
-**Author:** Xotic750 <Xotic750@gmail.com>  
+**See**: [define-properties](https://www.npmjs.com/package/define-properties)  
+**Version**: 1.2.1  
+**Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  
 
@@ -106,7 +91,7 @@ with `properties`, but this method can read a little cleaner.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | object | <code>Object</code> |  | The object on which to define the property. |
-| prop | <code>string</code> &#124; <code>Symbol</code> |  | The property name. |
+| prop | <code>string</code> \| <code>Symbol</code> |  | The property name. |
 | value | <code>\*</code> |  | The value of the property. |
 | [force] | <code>boolean</code> | <code>false</code> | If `true` then set property regardless. |
 
