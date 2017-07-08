@@ -28,7 +28,7 @@ Define multiple non-enumerable properties at once.
 Requires ES3 or above.
 
 **See**: [define-properties](https://www.npmjs.com/package/define-properties)  
-**Version**: 1.3.0  
+**Version**: 1.4.0  
 **Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  
@@ -44,7 +44,7 @@ Requires ES3 or above.
 Boolean indicator as to whether the environments supports descriptors
 or not.
 
-**Kind**: inner property of <code>[define-properties-x](#module_define-properties-x)</code>  
+**Kind**: inner property of [<code>define-properties-x</code>](#module_define-properties-x)  
 **Example**  
 ```js
 var define = require('define-properties-x');
@@ -59,7 +59,7 @@ assignment in older engines. Existing properties are not overridden.
 Accepts a map of property names to a predicate that, when true,
 force-overrides.
 
-**Kind**: inner method of <code>[define-properties-x](#module_define-properties-x)</code>  
+**Kind**: inner method of [<code>define-properties-x</code>](#module_define-properties-x)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -86,7 +86,7 @@ property. Useful in environments that do not
 support `Computed property names`. This can be done
 with `properties`, but this method can read a little cleaner.
 
-**Kind**: inner method of <code>[define-properties-x](#module_define-properties-x)</code>  
+**Kind**: inner method of [<code>define-properties-x</code>](#module_define-properties-x)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
