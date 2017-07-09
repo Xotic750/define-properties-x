@@ -1,6 +1,8 @@
 <a name="module_define-properties-x"></a>
 
 ## define-properties-x
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Xotic750/define-properties-x.svg)](https://greenkeeper.io/)
 <a href="https://travis-ci.org/Xotic750/define-properties-x"
 title="Travis status">
 <img
