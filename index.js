@@ -1,34 +1,7 @@
 /**
- * @file
- * <a href="https://travis-ci.org/Xotic750/define-properties-x"
- * title="Travis status">
- * <img
- * src="https://travis-ci.org/Xotic750/define-properties-x.svg?branch=master"
- * alt="Travis status" height="18">
- * </a>
- * <a href="https://david-dm.org/Xotic750/define-properties-x"
- * title="Dependency status">
- * <img src="https://david-dm.org/Xotic750/define-properties-x.svg"
- * alt="Dependency status" height="18"/>
- * </a>
- * <a
- * href="https://david-dm.org/Xotic750/define-properties-x#info=devDependencies"
- * title="devDependency status">
- * <img src="https://david-dm.org/Xotic750/define-properties-x/dev-status.svg"
- * alt="devDependency status" height="18"/>
- * </a>
- * <a href="https://badge.fury.io/js/define-properties-x" title="npm version">
- * <img src="https://badge.fury.io/js/define-properties-x.svg"
- * alt="npm version" height="18">
- * </a>
- *
- * Define multiple non-enumerable properties at once.
- *
- * Requires ES3 or above.
- *
+ * @file Define multiple non-enumerable properties at once.
  * @see {@link https://www.npmjs.com/package/define-properties|define-properties}
- *
- * @version 1.4.0
+ * @version 2.0.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -43,23 +16,7 @@ var isUndefined = require('validate.io-undefined');
 var forEach = require('for-each');
 var $keys = require('object-keys-x');
 var $getOwnPropertySymbols = isFunction(Object.getOwnPropertySymbols) && Object.getOwnPropertySymbols;
-var $defineProperty = isFunction(Object.defineProperty) && Object.defineProperty;
-var supportsDescriptors = Boolean($defineProperty) && (function () {
-  var obj = {};
-  try {
-    $defineProperty(obj, 'x', {
-      enumerable: false,
-      value: obj
-    });
-    // eslint-disable-next-line no-restricted-syntax
-    for (var unused in obj) {
-      return false;
-    }
-    return obj.x === obj;
-  } catch (e) { /* this is IE 8. */
-    return false;
-  }
-}());
+var $defineProperty = require('object-define-property-x');
 
 /**
  * Method `property`.
@@ -72,19 +29,16 @@ var supportsDescriptors = Boolean($defineProperty) && (function () {
  */
 // eslint-disable-next-line max-params
 var $property = function property(object, prop, value, force) {
-  if (prop in object && !force) {
+  if (prop in object && Boolean(force) === false) {
     return;
   }
-  if (supportsDescriptors) {
-    $defineProperty(object, prop, {
-      configurable: true,
-      enumerable: false,
-      value: value,
-      writable: true
-    });
-  } else {
-    object[prop] = value;
-  }
+
+  $defineProperty(object, prop, {
+    configurable: true,
+    enumerable: false,
+    value: value,
+    writable: true
+  });
 };
 
 /**
@@ -101,18 +55,14 @@ var $properties = function properties(object, map, predicates) {
   if (hasSymbols && $getOwnPropertySymbols) {
     props = props.concat($getOwnPropertySymbols(map));
   }
+
   forEach(props, function _for(name) {
     var predicate = preds[name];
-    $property(
-      object,
-      name,
-      map[name],
-      isFunction(predicate) && predicate()
-    );
+    $property(object, name, map[name], isFunction(predicate) && predicate());
   });
 };
 
-$properties(module.exports, {
+module.exports = {
   /**
    * Define multiple non-enumerable properties at once.
    * Uses `Object.defineProperty` when available; falls back to standard
@@ -152,15 +102,5 @@ $properties(module.exports, {
    * define.property(obj, Symbol.iterator, function () {}, true);
    * define.property(obj, myString, function () {}, true);
    */
-  property: $property,
-  /**
-   * Boolean indicator as to whether the environments supports descriptors
-   * or not.
-   *
-   * @type boolean
-   * @example
-   * var define = require('define-properties-x');
-   * define.supportsDescriptors; // true or false
-   */
-  supportsDescriptors: supportsDescriptors
-});
+  property: $property
+};

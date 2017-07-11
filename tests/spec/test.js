@@ -21,41 +21,44 @@ if (typeof module === 'object' && module.exports) {
   lib = returnExports;
 }
 
-var areyDescriptorsSupported = function () {
-    var obj = { a: 1 };
-    try {
-      Object.defineProperty(obj, 'x', { value: obj });
-      return obj.x === obj;
-    } catch (ignore) {} /* this is IE 8. */
+var areDescriptorsSupported = function () {
+  var obj = {};
+  try {
+    Object.defineProperty(obj, 'x', {
+      enumerable: false,
+      value: obj
+    });
+    // eslint-disable-next-line no-restricted-syntax
+    for (var unused in obj) {
+      return false;
+    }
+    return obj.x === obj;
+  } catch (e) { /* this is IE 8. */
     return false;
-  },
-  descriptorsSupported = Boolean(Object.defineProperty) && areyDescriptorsSupported(),
-  hasSymbols = typeof Symbol === 'function' && typeof Symbol('') === 'symbol',
-  ifHasSymbolsIt = hasSymbols ? it : xit,
-  ifDescriptorsSupportedIt = descriptorsSupported ? it : xit,
-  ifNotDescSupportedIt = descriptorsSupported ? xit : it;
+  }
+};
+
+var descriptorsSupported = Boolean(Object.defineProperty) && areDescriptorsSupported();
+var hasSymbols = typeof Symbol === 'function' && typeof Symbol('') === 'symbol';
+var ifHasSymbolsIt = hasSymbols ? it : xit;
+var ifDescriptorsSupportedIt = descriptorsSupported ? it : xit;
+var ifNotDescSupportedIt = descriptorsSupported ? xit : it;
 
 describe('Basic tests', function () {
-  describe('supportsDescriptors', function () {
-    it('are the same', function () {
-      expect(lib.supportsDescriptors).toBe(descriptorsSupported);
-    });
-  });
-
   describe('defineProperty', function () {
     ifDescriptorsSupportedIt('with descriptor support', function () {
       var getDescriptor = function (value) {
-          return {
-            configurable: true,
-            enumerable: false,
-            value: value,
-            writable: true
-          };
-        },
-        obj = {
-          a: 1,
-          b: 2
+        return {
+          configurable: true,
+          enumerable: false,
+          value: value,
+          writable: true
         };
+      };
+      var obj = {
+        a: 1,
+        b: 2
+      };
       obj.c = 3;
       expect(Object.keys(obj)).toEqual(
         [
