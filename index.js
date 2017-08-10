@@ -1,7 +1,7 @@
 /**
  * @file Define multiple non-enumerable properties at once.
  * @see {@link https://www.npmjs.com/package/define-properties|define-properties}
- * @version 2.0.0
+ * @version 2.0.1
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -13,7 +13,7 @@
 var hasSymbols = require('has-symbol-support-x');
 var isFunction = require('is-function-x');
 var isUndefined = require('validate.io-undefined');
-var forEach = require('for-each');
+var forEach = require('array-for-each-x');
 var $keys = require('object-keys-x');
 var $getOwnPropertySymbols = isFunction(Object.getOwnPropertySymbols) && Object.getOwnPropertySymbols;
 var $defineProperty = require('object-define-property-x');
@@ -22,10 +22,10 @@ var $defineProperty = require('object-define-property-x');
  * Method `property`.
  *
  * @private
- * @param {Object} object The object on which to define the property.
- * @param {string|Symbol} prop The property name.
- * @param {*} value The value of the property.
- * @param {boolean} [force=false] If `true` then set property regardless.
+ * @param {Object} object - The object on which to define the property.
+ * @param {string|Symbol} prop - The property name.
+ * @param {*} value - The value of the property.
+ * @param {boolean} [force=false] - If `true` then set property regardless.
  */
 // eslint-disable-next-line max-params
 var $property = function property(object, prop, value, force) {
@@ -45,9 +45,9 @@ var $property = function property(object, prop, value, force) {
  * Method `properties`.
  *
  * @private
- * @param {Object} object The object on which to define the property.
- * @param {Object} map The object of properties.
- * @param {Object} [predicates] The object of property predicates.
+ * @param {Object} object - The object on which to define the property.
+ * @param {Object} map - The object of properties.
+ * @param {Object} [predicates] - The object of property predicates.
  */
 var $properties = function properties(object, map, predicates) {
   var preds = isUndefined(predicates) ? {} : predicates;
@@ -71,9 +71,9 @@ module.exports = {
    * force-overrides.
    *
    * @function
-   * @param {Object} object The object on which to define the property.
-   * @param {Object} map The object of properties.
-   * @param {Object} [predicates] The object of property predicates.
+   * @param {Object} object - The object on which to define the property.
+   * @param {Object} map - The object of properties.
+   * @param {Object} [predicates] - The object of property predicates.
    * @example
    * var define = require('define-properties-x');
    * define.properties({
@@ -92,10 +92,10 @@ module.exports = {
    * with `properties`, but this method can read a little cleaner.
    *
    * @function
-   * @param {Object} object The object on which to define the property.
-   * @param {string|Symbol} prop The property name.
-   * @param {*} value The value of the property.
-   * @param {boolean} [force=false] If `true` then set property regardless.
+   * @param {Object} object - The object on which to define the property.
+   * @param {string|Symbol} prop - The property name.
+   * @param {*} value - The value of the property.
+   * @param {boolean} [force=false] - If `true` then set property regardless.
    * @example
    * var define = require('define-properties-x');
    * var myString = 'something';
