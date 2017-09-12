@@ -22,17 +22,17 @@ if (typeof module === 'object' && module.exports) {
 }
 
 var areDescriptorsSupported = function () {
-  var obj = {};
   try {
-    Object.defineProperty(obj, 'x', {
+    var obj = Object.defineProperty({}, 'x', {
       enumerable: false,
-      value: obj
+      value: true
     });
-    // eslint-disable-next-line no-restricted-syntax
-    for (var unused in obj) {
+
+    if (Object.keys(obj).length > 0) {
       return false;
     }
-    return obj.x === obj;
+
+    return obj.x === true;
   } catch (e) { /* this is IE 8. */
     return false;
   }

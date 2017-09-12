@@ -24,7 +24,7 @@
 Define multiple non-enumerable properties at once.
 
 **See**: [define-properties](https://www.npmjs.com/package/define-properties)  
-**Version**: 2.0.3  
+**Version**: 3.0.0  
 **Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  

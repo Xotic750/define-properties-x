@@ -1,7 +1,7 @@
 /**
  * @file Define multiple non-enumerable properties at once.
  * @see {@link https://www.npmjs.com/package/define-properties|define-properties}
- * @version 2.0.3
+ * @version 3.0.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -10,13 +10,12 @@
 
 'use strict';
 
-var hasSymbols = require('has-symbol-support-x');
 var isFunction = require('is-function-x');
 var isUndefined = require('validate.io-undefined');
 var forEach = require('array-for-each-x');
-var $keys = require('object-keys-x');
-var $getOwnPropertySymbols = isFunction(Object.getOwnPropertySymbols) && Object.getOwnPropertySymbols;
-var $defineProperty = require('object-define-property-x');
+var defineProperty = require('object-define-property-x');
+var isFalsey = require('is-falsey-x');
+var getKeys = require('get-own-enumerable-keys-x');
 
 /**
  * Method `property`.
@@ -29,11 +28,11 @@ var $defineProperty = require('object-define-property-x');
  */
 // eslint-disable-next-line max-params
 var $property = function property(object, prop, value, force) {
-  if (prop in object && Boolean(force) === false) {
+  if (prop in object && isFalsey(force)) {
     return;
   }
 
-  $defineProperty(object, prop, {
+  defineProperty(object, prop, {
     configurable: true,
     enumerable: false,
     value: value,
@@ -51,12 +50,7 @@ var $property = function property(object, prop, value, force) {
  */
 var $properties = function properties(object, map, predicates) {
   var preds = isUndefined(predicates) ? {} : predicates;
-  var props = $keys(map);
-  if (hasSymbols && $getOwnPropertySymbols) {
-    props = props.concat($getOwnPropertySymbols(map));
-  }
-
-  forEach(props, function _for(name) {
+  forEach(getKeys(map), function (name) {
     var predicate = preds[name];
     $property(object, name, map[name], isFunction(predicate) && predicate());
   });
