@@ -1,7 +1,7 @@
 /**
  * @file Define multiple non-enumerable properties at once.
  * @see {@link https://www.npmjs.com/package/define-properties|define-properties}
- * @version 3.0.0
+ * @version 3.1.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
