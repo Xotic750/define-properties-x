@@ -8,26 +8,24 @@
  * @module define-properties-x
  */
 
-'use strict';
-
-var isFunction = require('is-function-x');
-var isUndefined = require('validate.io-undefined');
-var forEach = require('array-for-each-x');
-var defineProperty = require('object-define-property-x');
-var isFalsey = require('is-falsey-x');
-var getKeys = require('get-own-enumerable-keys-x');
+const isFunction = require('is-function-x');
+const isUndefined = require('validate.io-undefined');
+const forEach = require('array-for-each-x');
+const defineProperty = require('object-define-property-x');
+const isFalsey = require('is-falsey-x');
+const getKeys = require('get-own-enumerable-keys-x');
 
 /**
  * Method `property`.
  *
  * @private
- * @param {Object} object - The object on which to define the property.
+ * @param {object} object - The object on which to define the property.
  * @param {string|Symbol} prop - The property name.
  * @param {*} value - The value of the property.
  * @param {boolean} [force=false] - If `true` then set property regardless.
  */
 // eslint-disable-next-line max-params
-var $property = function property(object, prop, value, force) {
+const $property = function property(object, prop, value, force) {
   if (prop in object && isFalsey(force)) {
     return;
   }
@@ -35,8 +33,8 @@ var $property = function property(object, prop, value, force) {
   defineProperty(object, prop, {
     configurable: true,
     enumerable: false,
-    value: value,
-    writable: true
+    value,
+    writable: true,
   });
 };
 
@@ -44,14 +42,14 @@ var $property = function property(object, prop, value, force) {
  * Method `properties`.
  *
  * @private
- * @param {Object} object - The object on which to define the property.
- * @param {Object} map - The object of properties.
- * @param {Object} [predicates] - The object of property predicates.
+ * @param {object} object - The object on which to define the property.
+ * @param {object} map - The object of properties.
+ * @param {object} [predicates] - The object of property predicates.
  */
-var $properties = function properties(object, map, predicates) {
-  var preds = isUndefined(predicates) ? {} : predicates;
-  forEach(getKeys(map), function (name) {
-    var predicate = preds[name];
+const $properties = function properties(object, map, predicates) {
+  const preds = isUndefined(predicates) ? {} : predicates;
+  forEach(getKeys(map), function(name) {
+    const predicate = preds[name];
     $property(object, name, map[name], isFunction(predicate) && predicate());
   });
 };
@@ -65,9 +63,9 @@ module.exports = {
    * force-overrides.
    *
    * @function
-   * @param {Object} object - The object on which to define the property.
-   * @param {Object} map - The object of properties.
-   * @param {Object} [predicates] - The object of property predicates.
+   * @param {object} object - The object on which to define the property.
+   * @param {object} map - The object of properties.
+   * @param {object} [predicates] - The object of property predicates.
    * @example
    * var define = require('define-properties-x');
    * define.properties({
@@ -86,7 +84,7 @@ module.exports = {
    * with `properties`, but this method can read a little cleaner.
    *
    * @function
-   * @param {Object} object - The object on which to define the property.
+   * @param {object} object - The object on which to define the property.
    * @param {string|Symbol} prop - The property name.
    * @param {*} value - The value of the property.
    * @param {boolean} [force=false] - If `true` then set property regardless.
@@ -96,5 +94,5 @@ module.exports = {
    * define.property(obj, Symbol.iterator, function () {}, true);
    * define.property(obj, myString, function () {}, true);
    */
-  property: $property
+  property: $property,
 };
