@@ -55,8 +55,8 @@
   "dependencies": {
     "array-for-each-x": "^2.3.0",
     "get-own-enumerable-keys-x": "^1.2.0",
-    "is-falsey-x": "^2.0.4",
-    "is-function-x": "^4.0.5",
+    "is-falsey-x": "^2.0.5",
+    "is-function-x": "^4.0.6",
     "object-define-property-x": "^4.1.0",
     "validate.io-undefined": "^1.0.3"
   },
