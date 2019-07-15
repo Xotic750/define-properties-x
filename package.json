@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "array-for-each-x": "^3.0.1",
-    "get-own-enumerable-keys-x": "^2.0.0",
+    "get-own-enumerable-keys-x": "^2.0.1",
     "is-falsey-x": "^2.0.6",
     "is-function-x": "^4.0.8",
     "object-define-property-x": "^5.0.0",
