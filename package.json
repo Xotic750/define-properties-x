@@ -57,7 +57,7 @@
     "get-own-enumerable-keys-x": "^1.2.0",
     "is-falsey-x": "^2.0.6",
     "is-function-x": "^4.0.8",
-    "object-define-property-x": "^4.1.0",
+    "object-define-property-x": "^5.0.0",
     "validate.io-undefined": "^1.0.3"
   },
   "devDependencies": {
