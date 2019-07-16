@@ -53,11 +53,11 @@
     "url": "https://github.com/Xotic750/define-properties-x/issues"
   },
   "dependencies": {
-    "array-for-each-x": "^3.0.3",
-    "get-own-enumerable-keys-x": "^2.0.3",
-    "is-falsey-x": "^2.0.8",
-    "is-function-x": "^4.0.10",
-    "object-define-property-x": "^5.0.2",
+    "array-for-each-x": "^3.0.4",
+    "get-own-enumerable-keys-x": "^2.0.4",
+    "is-falsey-x": "^2.0.9",
+    "is-function-x": "^4.0.11",
+    "object-define-property-x": "^5.0.3",
     "validate.io-undefined": "^1.0.3"
   },
   "devDependencies": {
