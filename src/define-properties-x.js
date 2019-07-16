@@ -1,13 +1,3 @@
-/**
- * @file Define multiple non-enumerable properties at once.
- * @see {@link https://www.npmjs.com/package/define-properties|define-properties}
- * @version 3.1.0
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
- * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module define-properties-x
- */
-
 import isFunction from 'is-function-x';
 
 import isUndefined from 'validate.io-undefined';
@@ -67,15 +57,6 @@ export default {
    * @param {object} object - The object on which to define the property.
    * @param {object} map - The object of properties.
    * @param {object} [predicates] - The object of property predicates.
-   * @example
-   * var define = require('define-properties-x');
-   * define.properties({
-   *   a: 1,
-   *   b: 2
-   * }, {
-   *   a: function () { return false; },
-   *   b: function () { return true; }
-   * });
    */
   properties: $properties,
   /**
@@ -89,11 +70,6 @@ export default {
    * @param {string|Symbol} prop - The property name.
    * @param {*} value - The value of the property.
    * @param {boolean} [force=false] - If `true` then set property regardless.
-   * @example
-   * var define = require('define-properties-x');
-   * var myString = 'something';
-   * define.property(obj, Symbol.iterator, function () {}, true);
-   * define.property(obj, myString, function () {}, true);
    */
   property: $property,
 };
