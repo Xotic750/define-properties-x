@@ -8,12 +8,13 @@
  * @module define-properties-x
  */
 
-const isFunction = require('is-function-x');
-const isUndefined = require('validate.io-undefined');
-const forEach = require('array-for-each-x');
-const defineProperty = require('object-define-property-x');
-const isFalsey = require('is-falsey-x');
-const getKeys = require('get-own-enumerable-keys-x');
+import isFunction from 'is-function-x';
+
+import isUndefined from 'validate.io-undefined';
+import forEach from 'array-for-each-x';
+import defineProperty from 'object-define-property-x';
+import isFalsey from 'is-falsey-x';
+import getKeys from 'get-own-enumerable-keys-x';
 
 /**
  * Method `property`.
@@ -54,7 +55,7 @@ const $properties = function properties(object, map, predicates) {
   });
 };
 
-module.exports = {
+export default {
   /**
    * Define multiple non-enumerable properties at once.
    * Uses `Object.defineProperty` when available; falls back to standard
