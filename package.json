@@ -56,8 +56,7 @@
     "array-for-each-x": "^3.0.8",
     "get-own-enumerable-keys-x": "^2.0.6",
     "is-function-x": "^4.0.14",
-    "object-define-property-x": "^5.0.5",
-    "is-falsey-x": "^2.0.11"
+    "object-define-property-x": "^5.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
