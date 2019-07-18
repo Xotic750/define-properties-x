@@ -1,11 +1,12 @@
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
+
 import isFunction from 'is-function-x';
 import forEach from 'array-for-each-x';
 import defineProperty from 'object-define-property-x';
 import getKeys from 'get-own-enumerable-keys-x';
-
 /**  @type {BooleanConstructor} */
-const castBoolean = true.constructor;
 
+var castBoolean = true.constructor;
 /**
  * Just like `properties` but for defining a single non-enumerable
  * property. Useful in environments that do not
@@ -18,7 +19,8 @@ const castBoolean = true.constructor;
  * @param {*} value - The value of the property.
  * @param {boolean} [force=false] - If `true` then set property regardless.
  */
-export const property = function property(object, prop, value, force) {
+
+export var property = function property(object, prop, value, force) {
   if (prop in object && castBoolean(force) === false) {
     return;
   }
@@ -26,11 +28,10 @@ export const property = function property(object, prop, value, force) {
   defineProperty(object, prop, {
     configurable: true,
     enumerable: false,
-    value,
-    writable: true,
+    value: value,
+    writable: true
   });
 };
-
 /**
  * Define multiple non-enumerable properties at once.
  * Uses `Object.defineProperty` when available; falls back to standard
@@ -43,10 +44,17 @@ export const property = function property(object, prop, value, force) {
  * @param {object} map - The object of properties.
  * @param {object} [predicates] - The object of property predicates.
  */
-export const properties = function properties(object, map, predicates) {
-  const preds = typeof predicates === 'undefined' ? {} : predicates;
-  forEach(getKeys(map), (name) => {
-    const predicate = preds[name];
+
+export var properties = function properties(object, map, predicates) {
+  var _this = this;
+
+  var preds = typeof predicates === 'undefined' ? {} : predicates;
+  forEach(getKeys(map), function (name) {
+    _newArrowCheck(this, _this);
+
+    var predicate = preds[name];
     property(object, name, map[name], isFunction(predicate) && predicate());
-  });
+  }.bind(this));
 };
+
+//# sourceMappingURL=define-properties-x.esm.js.map

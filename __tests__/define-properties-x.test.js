@@ -1,4 +1,4 @@
-let lib;
+import {property, properties} from '../src/define-properties-x';
 
 const areDescriptorsSupported = function() {
   try {
@@ -42,8 +42,8 @@ describe('basic tests', function() {
       };
       obj.c = 3;
       expect(Object.keys(obj)).toStrictEqual(['a', 'b', 'c'], 'all literal-set Object.keys start enumerable');
-      lib.property(obj, 'c', 4);
-      lib.property(obj, 'd', 5);
+      property(obj, 'c', 4);
+      property(obj, 'd', 5);
       expect(obj).toStrictEqual(
         {
           a: 1,
@@ -58,9 +58,9 @@ describe('basic tests', function() {
       );
       expect(['a', 'b', 'c']).toStrictEqual(Object.keys(obj), 'new Object.keys are not enumerable');
 
-      lib.property(obj, 'a', 2, true);
-      lib.property(obj, 'b', 3, false);
-      lib.property(obj, 'c', 4);
+      property(obj, 'a', 2, true);
+      property(obj, 'b', 3, false);
+      property(obj, 'c', 4);
       expect(obj).toStrictEqual(
         {
           b: 2,
@@ -85,9 +85,9 @@ describe('basic tests', function() {
         b: 2,
         c: 3,
       };
-      lib.property(obj, 'b', 3);
-      lib.property(obj, 'c', 4);
-      lib.property(obj, 'd', 5);
+      property(obj, 'b', 3);
+      property(obj, 'c', 4);
+      property(obj, 'd', 5);
       expect(obj).toStrictEqual(
         {
           a: 1,
@@ -98,9 +98,9 @@ describe('basic tests', function() {
         'existing properties were not overridden, new properties added',
       );
 
-      lib.property(obj, 'a', 2, true);
-      lib.property(obj, 'b', 3, false);
-      lib.property(obj, 'c', 4);
+      property(obj, 'a', 2, true);
+      property(obj, 'b', 3, false);
+      property(obj, 'c', 4);
       expect(obj).toStrictEqual(
         {
           a: 2,
@@ -118,8 +118,8 @@ describe('basic tests', function() {
       const aValue = {};
       const bValue = {};
 
-      lib.property(obj, 'a', aValue);
-      lib.property(obj, sym, bValue);
+      property(obj, 'a', aValue);
+      property(obj, sym, bValue);
 
       expect(Object.keys(obj)).toStrictEqual([], 'object has no enumerable Object.keys');
       expect(Object.getOwnPropertyNames(obj)).toStrictEqual(['a'], 'object has non-enumerable "a" key');
@@ -146,7 +146,7 @@ describe('basic tests', function() {
         c: 3,
       };
       expect(Object.keys(obj)).toStrictEqual(['a', 'b', 'c'], 'all literal-set keys start enumerable');
-      lib.properties(obj, {
+      properties(obj, {
         b: 3,
         c: 4,
         d: 5,
@@ -165,7 +165,7 @@ describe('basic tests', function() {
       );
       expect(['a', 'b', 'c']).toStrictEqual(Object.keys(obj), 'new keys are not enumerable');
 
-      lib.properties(
+      properties(
         obj,
         {
           a: 2,
@@ -205,7 +205,7 @@ describe('basic tests', function() {
         b: 2,
         c: 3,
       };
-      lib.properties(obj, {
+      properties(obj, {
         b: 3,
         c: 4,
         d: 5,
@@ -220,7 +220,7 @@ describe('basic tests', function() {
         'existing properties were not overridden, new properties were added',
       );
 
-      lib.properties(
+      properties(
         obj,
         {
           a: 2,
@@ -248,14 +248,15 @@ describe('basic tests', function() {
     });
 
     ifHasSymbolsIt('symbols', function() {
+      expect.assertions(5);
       const sym = Symbol('foo');
       const obj = {};
       const aValue = {};
       const bValue = {};
-      const properties = {a: aValue};
-      properties[sym] = bValue;
+      const props = {a: aValue};
+      props[sym] = bValue;
 
-      lib.properties(obj, properties);
+      properties(obj, props);
 
       expect(Object.keys(obj)).toStrictEqual([], 'object has no enumerable keys');
       expect(Object.getOwnPropertyNames(obj)).toStrictEqual(['a'], 'object has non-enumerable "a" key');
