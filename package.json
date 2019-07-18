@@ -1,6 +1,6 @@
 {
   "name": "define-properties-x",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Define multiple non-enumerable properties at once.",
   "homepage": "https://github.com/Xotic750/define-properties-x",
   "author": {
@@ -53,10 +53,10 @@
     "url": "https://github.com/Xotic750/define-properties-x/issues"
   },
   "dependencies": {
-    "array-for-each-x": "^3.0.9",
-    "get-own-enumerable-keys-x": "^2.0.7",
-    "is-function-x": "^4.0.15",
-    "object-define-property-x": "^5.0.6"
+    "array-for-each-x": "^3.0.10",
+    "get-own-enumerable-keys-x": "^2.0.8",
+    "is-function-x": "^4.0.17",
+    "object-define-property-x": "^5.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
