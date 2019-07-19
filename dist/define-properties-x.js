@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-18T23:03:46.776Z",
+  "date": "2019-07-19T22:43:57.743Z",
   "describe": "",
   "description": "Define multiple non-enumerable properties at once.",
   "file": "define-properties-x.js",
-  "hash": "2550c11dd85b97fac5f2",
+  "hash": "844ee37acd28fa38d2d8",
   "license": "MIT",
-  "version": "4.0.1"
+  "version": "4.0.2"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -2206,7 +2206,7 @@ var hop = {}.hasOwnProperty;
  *
  * @param {!object} object - The object to test.
  * @throws {TypeError} If object is null or undefined.
- * @param {string|Symbol} property - The name or Symbol of the property to test.
+ * @param {string|number|Symbol} property - The name or Symbol of the property to test.
  * @returns {boolean} `true` if the property is set on `object`, else `false`.
  */
 
