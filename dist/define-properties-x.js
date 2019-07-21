@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-19T22:43:57.743Z",
+  "date": "2019-07-21T23:32:25.162Z",
   "describe": "",
   "description": "Define multiple non-enumerable properties at once.",
   "file": "define-properties-x.js",
   "hash": "844ee37acd28fa38d2d8",
   "license": "MIT",
-  "version": "4.0.2"
+  "version": "4.0.3"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
