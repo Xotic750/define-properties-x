@@ -1,23 +1,31 @@
 <a href="https://travis-ci.org/Xotic750/define-properties-x"
-   title="Travis status">
+  title="Travis status">
 <img
-   src="https://travis-ci.org/Xotic750/define-properties-x.svg?branch=master"
-   alt="Travis status" height="18"/>
+  src="https://travis-ci.org/Xotic750/define-properties-x.svg?branch=master"
+  alt="Travis status" height="18">
 </a>
 <a href="https://david-dm.org/Xotic750/define-properties-x"
-   title="Dependency status">
-<img src="https://david-dm.org/Xotic750/define-properties-x.svg"
-   alt="Dependency status" height="18"/>
+  title="Dependency status">
+<img src="https://david-dm.org/Xotic750/define-properties-x/status.svg"
+  alt="Dependency status" height="18"/>
 </a>
-<a href="https://david-dm.org/Xotic750/define-properties-x#info=devDependencies"
-   title="devDependency status">
+<a
+  href="https://david-dm.org/Xotic750/define-properties-x?type=dev"
+  title="devDependency status">
 <img src="https://david-dm.org/Xotic750/define-properties-x/dev-status.svg"
-   alt="devDependency status" height="18"/>
+  alt="devDependency status" height="18"/>
 </a>
-<a href="https://badge.fury.io/js/define-properties-x" title="npm version">
+<a href="https://badge.fury.io/js/define-properties-x"
+  title="npm version">
 <img src="https://badge.fury.io/js/define-properties-x.svg"
-   alt="npm version" height="18"/>
+  alt="npm version" height="18">
 </a>
+<a href="https://www.jsdelivr.com/package/npm/define-properties-x"
+  title="jsDelivr hits">
+<img src="https://data.jsdelivr.com/v1/package/npm/define-properties-x/badge?style=rounded"
+  alt="jsDelivr hits" height="18">
+</a>
+
 <a name="module_define-properties-x"></a>
 
 ## define-properties-x
