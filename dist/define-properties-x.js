@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-27T15:24:09.284Z",
+  "date": "2019-07-27T20:29:03.978Z",
   "describe": "",
   "description": "Define multiple non-enumerable properties at once.",
   "file": "define-properties-x.js",
-  "hash": "1b181ec6a928bfa30277",
+  "hash": "943f96002aaf7cd6400b",
   "license": "MIT",
   "version": "4.0.9"
 }
@@ -3094,15 +3094,11 @@ var get_own_enumerable_keys_x_esm_getOwnNonEnumerableKeys = function getOwnNonEn
 // CONCATENATED MODULE: ./dist/define-properties-x.esm.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "property", function() { return define_properties_x_esm_property; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "properties", function() { return define_properties_x_esm_properties; });
-function define_properties_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 
 
 
 
 
-/**  @type {BooleanConstructor} */
-
-var define_properties_x_esm_castBoolean = true.constructor;
 /**
  * Just like `properties` but for defining a single non-enumerable
  * property. Useful in environments that do not
@@ -3117,7 +3113,7 @@ var define_properties_x_esm_castBoolean = true.constructor;
  */
 
 var define_properties_x_esm_property = function property(object, prop, value, force) {
-  if (prop in object && define_properties_x_esm_castBoolean(force) === false) {
+  if (prop in object && to_boolean_x_esm(force) === false) {
     return;
   }
 
@@ -3142,15 +3138,11 @@ var define_properties_x_esm_property = function property(object, prop, value, fo
  */
 
 var define_properties_x_esm_properties = function properties(object, map, predicates) {
-  var _this = this;
-
   var preds = typeof predicates === 'undefined' ? {} : predicates;
-  array_for_each_x_esm(get_own_enumerable_keys_x_esm(map), function (name) {
-    define_properties_x_esm_newArrowCheck(this, _this);
-
+  array_for_each_x_esm(get_own_enumerable_keys_x_esm(map), function iteratee(name) {
     var predicate = preds[name];
     define_properties_x_esm_property(object, name, map[name], is_function_x_esm(predicate) && predicate());
-  }.bind(this));
+  });
 };
 
 

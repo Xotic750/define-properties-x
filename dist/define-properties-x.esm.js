@@ -1,12 +1,8 @@
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
 import isFunction from 'is-function-x';
 import forEach from 'array-for-each-x';
 import defineProperty from 'object-define-property-x';
 import getKeys from 'get-own-enumerable-keys-x';
-/**  @type {BooleanConstructor} */
-
-var castBoolean = true.constructor;
+import toBoolean from 'to-boolean-x';
 /**
  * Just like `properties` but for defining a single non-enumerable
  * property. Useful in environments that do not
@@ -21,7 +17,7 @@ var castBoolean = true.constructor;
  */
 
 export var property = function property(object, prop, value, force) {
-  if (prop in object && castBoolean(force) === false) {
+  if (prop in object && toBoolean(force) === false) {
     return;
   }
 
@@ -46,15 +42,11 @@ export var property = function property(object, prop, value, force) {
  */
 
 export var properties = function properties(object, map, predicates) {
-  var _this = this;
-
   var preds = typeof predicates === 'undefined' ? {} : predicates;
-  forEach(getKeys(map), function (name) {
-    _newArrowCheck(this, _this);
-
+  forEach(getKeys(map), function iteratee(name) {
     var predicate = preds[name];
     property(object, name, map[name], isFunction(predicate) && predicate());
-  }.bind(this));
+  });
 };
 
 //# sourceMappingURL=define-properties-x.esm.js.map

@@ -2,9 +2,7 @@ import isFunction from 'is-function-x';
 import forEach from 'array-for-each-x';
 import defineProperty from 'object-define-property-x';
 import getKeys from 'get-own-enumerable-keys-x';
-
-/**  @type {BooleanConstructor} */
-const castBoolean = true.constructor;
+import toBoolean from 'to-boolean-x';
 
 /**
  * Just like `properties` but for defining a single non-enumerable
@@ -19,7 +17,7 @@ const castBoolean = true.constructor;
  * @param {boolean} [force=false] - If `true` then set property regardless.
  */
 export const property = function property(object, prop, value, force) {
-  if (prop in object && castBoolean(force) === false) {
+  if (prop in object && toBoolean(force) === false) {
     return;
   }
 
@@ -45,8 +43,10 @@ export const property = function property(object, prop, value, force) {
  */
 export const properties = function properties(object, map, predicates) {
   const preds = typeof predicates === 'undefined' ? {} : predicates;
-  forEach(getKeys(map), (name) => {
+
+  forEach(getKeys(map), function iteratee(name) {
     const predicate = preds[name];
+
     property(object, name, map[name], isFunction(predicate) && predicate());
   });
 };
