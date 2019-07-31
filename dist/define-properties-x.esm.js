@@ -11,7 +11,7 @@ import toBoolean from 'to-boolean-x';
  *
  * @function
  * @param {object} object - The object on which to define the property.
- * @param {string|Symbol} prop - The property name.
+ * @param {string|symbol} prop - The property name.
  * @param {*} value - The value of the property.
  * @param {boolean} [force=false] - If `true` then set property regardless.
  */

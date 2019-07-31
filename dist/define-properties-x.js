@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-29T20:17:26.116Z",
+  "date": "2019-07-31T18:16:21.588Z",
   "describe": "",
   "description": "Define multiple non-enumerable properties at once.",
   "file": "define-properties-x.js",
-  "hash": "943f96002aaf7cd6400b",
+  "hash": "09dfefe0810cf7aca8c6",
   "license": "MIT",
   "version": "4.0.9"
 }
@@ -3107,7 +3107,7 @@ var get_own_enumerable_keys_x_esm_getOwnNonEnumerableKeys = function getOwnNonEn
  *
  * @function
  * @param {object} object - The object on which to define the property.
- * @param {string|Symbol} prop - The property name.
+ * @param {string|symbol} prop - The property name.
  * @param {*} value - The value of the property.
  * @param {boolean} [force=false] - If `true` then set property regardless.
  */
