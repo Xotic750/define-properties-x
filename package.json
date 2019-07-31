@@ -1,6 +1,6 @@
 {
   "name": "define-properties-x",
-  "version": "4.0.9",
+  "version": "4.0.10",
   "description": "Define multiple non-enumerable properties at once.",
   "homepage": "https://github.com/Xotic750/define-properties-x",
   "author": {
@@ -54,11 +54,11 @@
     "url": "https://github.com/Xotic750/define-properties-x/issues"
   },
   "dependencies": {
-    "array-for-each-x": "^3.0.19",
-    "get-own-enumerable-keys-x": "^2.0.17",
-    "is-function-x": "^4.0.27",
-    "object-define-property-x": "^5.0.16",
-    "to-boolean-x": "^2.0.24"
+    "array-for-each-x": "^3.0.20",
+    "get-own-enumerable-keys-x": "^2.0.18",
+    "is-function-x": "^4.0.28",
+    "object-define-property-x": "^5.0.17",
+    "to-boolean-x": "^2.0.25"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -70,7 +70,7 @@
     "@babel/runtime": "^7.5.5",
     "@types/jest": "^24.0.16",
     "@types/node": "^12.6.8",
-    "@xotic750/eslint-config-recommended": "^1.0.4",
+    "@xotic750/eslint-config-recommended": "^1.0.5",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
