@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-08-15T20:54:19.909Z",
+  "date": "2019-08-20T18:20:24.640Z",
   "describe": "",
   "description": "Define multiple non-enumerable properties at once.",
   "file": "define-properties-x.js",
